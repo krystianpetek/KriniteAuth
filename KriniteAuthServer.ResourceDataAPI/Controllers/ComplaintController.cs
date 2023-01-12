@@ -1,4 +1,5 @@
 ﻿using KriniteAuthServer.ResourceDataAPI.Models;
+using KriniteAuthServer.ResourceDataAPI.Repositories;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,12 +9,18 @@ namespace KriniteAuthServer.ResourceDataAPI.Controllers;
 [Route("api/[controller]")]
 public class ComplaintController : ControllerBase
 {
-    public ComplaintController() { }
+    private readonly IComplaintRepository _complaintRepository;
+
+    public ComplaintController(IComplaintRepository complaintRepository)
+    {
+        _complaintRepository = complaintRepository;
+    }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ComplaintModel>>> GetComplaintsAsync()
     {
-        return Ok();
+        var response = await _complaintRepository.GetAllAsync();
+        return Ok(response);
     }
 
     [HttpGet("{id}")]

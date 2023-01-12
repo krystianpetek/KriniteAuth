@@ -1,5 +1,6 @@
 
 using KriniteAuthServer.ResourceDataAPI.Data;
+using KriniteAuthServer.ResourceDataAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -23,6 +24,7 @@ public class Program
             string connectionString = builder.Configuration.GetConnectionString("ComplaintDb");
             dbContext.UseSqlServer(connectionString);
         });
+        builder.Services.AddScoped<IComplaintRepository, ComplaintRepository>();
 
         var app = builder.Build();
 
