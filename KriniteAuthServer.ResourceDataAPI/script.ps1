@@ -1,0 +1,1 @@
+﻿docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=NotAll0wedForPublic" -p 7821:1433 -d --name KriniteAuthServer-ResourceDataAPI mcr.microsoft.com/mssql/server:latest
