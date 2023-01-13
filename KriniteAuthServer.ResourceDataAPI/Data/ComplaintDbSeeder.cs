@@ -11,22 +11,22 @@ public static class ComplaintDbSeeder
         var logger = serviceProvider.GetRequiredService<ILogger<ComplaintDbContext>>();
         var dbContext = serviceProvider.GetRequiredService<ComplaintDbContext>();
 
-        logger.LogInformation("Seeding database is started.");
         try
         {
+            logger.LogInformation("Seeding database is started.");
             if (dbContext.Database.GetPendingMigrations().Any() || !dbContext.Complaints.Any())
             {
                 await dbContext.Database.MigrateAsync();
                 await dbContext.AddRangeAsync(ContextData());
                 await dbContext.SaveChangesAsync();
             }
+            logger.LogInformation("Seeding database is completed successfully.");
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "An error occured while database are seeding.");
         }
 
-        logger.LogInformation("Seeding database is completed successfully.");
         return app;
     }
     private static IReadOnlyCollection<ComplaintModel> ContextData()
