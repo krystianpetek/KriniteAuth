@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  kriniteauthserver.resourcedataapi:
+    image: ${DOCKER_REGISTRY-}kriniteauthserverresourcedataapi
+    build:
+      context: .
+      dockerfile: KriniteAuthServer.ResourceDataAPI/Dockerfile
+    networks:
+      static-network:
+        ipv4_address: 172.30.120.1
+        
+  kriniteauthserver.mssql:
+    image: mcr.microsoft.com/mssql/server:latest
+    networks:
+      static-network:
+        ipv4_address: 172.30.121.1
+
+  kriniteauthserver.oauthserver:
+    image: ${DOCKER_REGISTRY-}kriniteauthserveroauthserver
+    build:
+      context: .
+      dockerfile: KriniteAuthServer.OAuthServer/Dockerfile
+    networks:
+      static-network:
+        ipv4_address: 172.30.122.1
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16

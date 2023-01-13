@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  kriniteauthserver.resourcedataapi:
+    container_name: KriniteAuthServer.ResourceDataAPI
+    environment:
+      - Authority=http://kriniteauthserver.oauthserver
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;https://+443
+      - Kestrel__Certificates__Default__Path=dev-cert.pfx
+      - Kestrel__Certificates__Default__Password=DoNotTellAny0ne
+    ports:
+      - "5720:80"
+      - "7820:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  kriniteauthserver.oauthserver:
+    container_name: KriniteAuthServer.OAuthServer
+    environment:
+      - Issuer=http://kriniteauthserver.oauthserver
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;https://+443
+      - Kestrel__Certificates__Default__Path=dev-cert.pfx
+      - Kestrel__Certificates__Default__Password=DoNotTellAny0ne
+    ports:
+      - "5722:80"
+      - "7822:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  kriniteauthserver.mssql:
+    container_name: KriniteAuthServer.OAuthServer.MsSql
+    environment:
+      SA_PASSWORD: "DoNotTellAny0ne"
+      ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+      - "7821:1433"
