@@ -1,6 +1,8 @@
 
 using KriniteAuthServer.ResourceDataAPI.Data;
 using KriniteAuthServer.ResourceDataAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Server.HttpSys;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -31,10 +33,18 @@ public static class Program
                 options.Authority = "https://localhost:7822";
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    ValidateIssuer= true,
-                    ValidateAudience= false,
+                    ValidateIssuer = true,
+                    ValidateAudience = false,
                 };
             });
+
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("ComplaintPolicy", policy =>
+            {
+                policy.RequireClaim("client_id", "resourceDataApiClient");
+            });
+        });
 
         var app = builder.Build();
 

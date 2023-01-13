@@ -8,7 +8,7 @@ namespace KriniteAuthServer.ResourceDataAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
+[Authorize(Policy = "ComplaintPolicy")]
 public class ComplaintController : ControllerBase
 {
     private readonly IComplaintRepository _complaintRepository;
