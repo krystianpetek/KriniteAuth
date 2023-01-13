@@ -25,6 +25,16 @@ public static class Program
             dbContext.UseSqlServer(connectionString);
         });
         builder.Services.AddScoped<IComplaintRepository, ComplaintRepository>();
+        builder.Services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "https://localhost:7822";
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer= true,
+                    ValidateAudience= false,
+                };
+            });
 
         var app = builder.Build();
 
@@ -39,6 +49,7 @@ public static class Program
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();

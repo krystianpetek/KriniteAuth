@@ -35,16 +35,16 @@ public class ComplaintRepository : IComplaintRepository
         return addedEntity.Entity.Id;
     }
 
-    public async Task UpdateAsync(ComplaintModel complaintModel)
+    public async Task<int> UpdateAsync(ComplaintModel complaintModel)
     {
         _complaintDbContext.Complaints
             .Update(complaintModel);
-        await _complaintDbContext.SaveChangesAsync();
+        return await _complaintDbContext.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task<int> DeleteAsync(Guid id)
     {
-        await _complaintDbContext.Complaints
+        return await _complaintDbContext.Complaints
             .Where(complaint => complaint.Id == id)
             .ExecuteDeleteAsync();
     }

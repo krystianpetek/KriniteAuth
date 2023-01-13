@@ -7,6 +7,6 @@ public interface IComplaintRepository
     Task<IEnumerable<ComplaintModel>> GetAllAsync();
     Task<ComplaintModel> GetByIdAsync(Guid id);
     Task<Guid> AddAsync(ComplaintModel complaintModel);
-    Task UpdateAsync(ComplaintModel complaintModel);
-    Task DeleteAsync(Guid id);
+    Task<int> UpdateAsync(ComplaintModel complaintModel);
+    Task<int> DeleteAsync(Guid id);
 }

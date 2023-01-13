@@ -1,5 +1,6 @@
 ﻿using KriniteAuthServer.ResourceDataAPI.Models;
 using KriniteAuthServer.ResourceDataAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace KriniteAuthServer.ResourceDataAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ComplaintController : ControllerBase
 {
     private readonly IComplaintRepository _complaintRepository;
@@ -27,6 +29,8 @@ public class ComplaintController : ControllerBase
     public async Task<ActionResult<ComplaintModel>> GetComplaintAsync(Guid id)
     {
         var result = await _complaintRepository.GetByIdAsync(id);
+        if (result is null)
+            return NotFound();
         return Ok(result);
     }
 
@@ -34,20 +38,25 @@ public class ComplaintController : ControllerBase
     public async Task<IActionResult> AddComplaintAsync(ComplaintModel complaintModel)
     {
         var createdId = await _complaintRepository.AddAsync(complaintModel);
-        return Created(string.Empty,createdId);
+        return Created(string.Empty, createdId);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateComplaintAsync(ComplaintModel complaintModel)
     {
-        await _complaintRepository.UpdateAsync(complaintModel);
-        return NoContent();
+        var result = await _complaintRepository.UpdateAsync(complaintModel);
+        if (result <= 0)
+            return NotFound();
+        
+        return Ok(complaintModel);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> RemoveComplaintAsync(Guid id)
     {
-        await _complaintRepository.DeleteAsync(id);
+        var result = await _complaintRepository.DeleteAsync(id);
+        if(result <= 0)
+            return NotFound();
         return Ok();
     }
 

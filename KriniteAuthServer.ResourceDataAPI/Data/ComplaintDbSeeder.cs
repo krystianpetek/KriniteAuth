@@ -35,6 +35,7 @@ public static class ComplaintDbSeeder
         {
             new ComplaintModel
             {
+                Id = Guid.Parse("6da1229a-3e2b-4bcd-1759-08daf5224668"),
                 Title = "Title1",
                 Description= "Description1",
                 Priority = Priority.LOW,
