@@ -5,23 +5,34 @@ namespace KriniteAuthServer.OAuthServer;
 
 public static class ServerConfiguration
 {
-    public static List<Client> Clients = new List<Client>()
+    internal static List<Client> Clients = new List<Client>()
+    {
+        new Client
+        {
+            ClientId = "resourceDataApiClient",
+            ClientSecrets =
+            {
+                new Secret("secret".Sha256())
+            },
+            AllowedScopes = {"resourceDataApi" },
+            AllowedGrantTypes = {GrantType.ClientCredentials }
+        }
+    };
+
+    internal static List<ApiScope> ApiScopes = new List<ApiScope>()
+    {
+        new ApiScope("resourceDataApi","ResourceDataAPI")
+    };
+
+    internal static List<ApiResource> ApiResources = new List<ApiResource>()
     {
     };
 
-    public static List<ApiScope> ApiScopes = new List<ApiScope>()
+    internal static List<IdentityResource> IdentityResources = new List<IdentityResource>()
     {
     };
 
-    public static List<ApiResource> ApiResources = new List<ApiResource>()
-    {
-    };
-
-    public static List<IdentityResource> IdentityResources = new List<IdentityResource>()
-    {
-    };
-
-    public static List<TestUser> TestUsers = new List<TestUser>()
+    internal static List<TestUser> TestUsers = new List<TestUser>()
     {
     };
 

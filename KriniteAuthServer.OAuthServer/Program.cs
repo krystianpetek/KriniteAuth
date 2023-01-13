@@ -10,11 +10,11 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddIdentityServer()
             .AddInMemoryClients(ServerConfiguration.Clients)
-            .AddInMemoryIdentityResources(ServerConfiguration.IdentityResources)
-            .AddInMemoryApiResources(ServerConfiguration.ApiResources)
             .AddInMemoryApiScopes(ServerConfiguration.ApiScopes)
+            .AddInMemoryApiResources(ServerConfiguration.ApiResources)
+            .AddInMemoryIdentityResources(ServerConfiguration.IdentityResources)
             .AddTestUsers(ServerConfiguration.TestUsers)
-             .AddDeveloperSigningCredential();
+            .AddDeveloperSigningCredential();
 
         var app = builder.Build();
 
