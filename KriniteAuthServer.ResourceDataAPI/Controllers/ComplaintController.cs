@@ -26,24 +26,28 @@ public class ComplaintController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<ComplaintModel>> GetComplaintAsync(Guid id)
     {
-        return Ok();
+        var result = await _complaintRepository.GetByIdAsync(id);
+        return Ok(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddComplaintAsync()
+    public async Task<IActionResult> AddComplaintAsync(ComplaintModel complaintModel)
     {
-        return CreatedAtAction(nameof(GetComplaintAsync), Guid.NewGuid());
+        var createdId = await _complaintRepository.AddAsync(complaintModel);
+        return Created(string.Empty,createdId);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateComplaintAsync(Guid id)
+    public async Task<IActionResult> UpdateComplaintAsync(ComplaintModel complaintModel)
     {
+        await _complaintRepository.UpdateAsync(complaintModel);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> RemoveComplaintAsync(Guid id)
     {
+        await _complaintRepository.DeleteAsync(id);
         return Ok();
     }
 
