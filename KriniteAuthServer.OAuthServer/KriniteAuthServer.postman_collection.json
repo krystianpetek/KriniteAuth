@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "8196f181-619f-4b13-a885-4a00d12d93bc",
+		"name": "KriniteAuthServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18753905"
+	},
+	"item": [
+		{
+			"name": "ResourceDataAPI",
+			"item": [
+				{
+					"name": "GET complaints",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ResourceDataAPI}}/api/complaint/",
+							"host": [
+								"{{ResourceDataAPI}}"
+							],
+							"path": [
+								"api",
+								"complaint",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST complaint",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{Title}}\",\r\n    \"description\": \"{{Description}}\",\r\n    \"priority\": {{Priority}},\r\n    \"status\": {{Status}},\r\n    \"applicant\": {\r\n        \"name\": \"{{Name}}\",\r\n        \"surname\": \"{{Surname}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ResourceDataAPI}}/api/complaint/",
+							"host": [
+								"{{ResourceDataAPI}}"
+							],
+							"path": [
+								"api",
+								"complaint",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET complaint by ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ResourceDataAPI}}/api/complaint/{{ComplaintId}}",
+							"host": [
+								"{{ResourceDataAPI}}"
+							],
+							"path": [
+								"api",
+								"complaint",
+								"{{ComplaintId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT complaint",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"{{ComplaintId}}\",\r\n    \"title\": \"{{Title}}\",\r\n    \"description\": \"{{Description}}\",\r\n    \"priority\": {{Priority}},\r\n    \"status\": {{Status}},\r\n    \"applicant\": {\r\n        \"name\": \"{{Name}}\",\r\n        \"surname\": \"{{Surname}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ResourceDataAPI}}/api/complaint/{{ComplaintId}}",
+							"host": [
+								"{{ResourceDataAPI}}"
+							],
+							"path": [
+								"api",
+								"complaint",
+								"{{ComplaintId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE complaint",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ResourceDataAPI}}/api/complaint/{{ComplaintId}}",
+							"host": [
+								"{{ResourceDataAPI}}"
+							],
+							"path": [
+								"api",
+								"complaint",
+								"{{ComplaintId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OAuthServer",
+			"item": [
+				{
+					"name": "OpenId-Configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{OAuthServer}}/.well-known/openid-configuration",
+							"host": [
+								"{{OAuthServer}}"
+							],
+							"path": [
+								".well-known",
+								"openid-configuration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "{{OAuthServer-grant_type}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{OAuthServer-client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{OAuthServer-client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "{{OAuthServer-scope}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{OAuthServer}}/connect/token",
+							"host": [
+								"{{OAuthServer}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ResourceDataAPI",
+			"value": "https://localhost:7820",
+			"type": "string"
+		},
+		{
+			"key": "OAuthServer",
+			"value": "https://localhost:7822",
+			"type": "string"
+		},
+		{
+			"key": "ApplicantId",
+			"value": "045745ab-9484-4dea-a3ee-08daf522466e",
+			"type": "string"
+		},
+		{
+			"key": "Name",
+			"value": "ExampleName",
+			"type": "string"
+		},
+		{
+			"key": "Surname",
+			"value": "ExampleSurname",
+			"type": "string"
+		},
+		{
+			"key": "Title",
+			"value": "ExampleTitle",
+			"type": "string"
+		},
+		{
+			"key": "Description",
+			"value": "ExampleDescription",
+			"type": "string"
+		},
+		{
+			"key": "Priority",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "Status",
+			"value": "2",
+			"type": "string"
+		},
+		{
+			"key": "ComplaintId",
+			"value": "6da1229a-3e2b-4bcd-1759-08daf5224668",
+			"type": "string"
+		},
+		{
+			"key": "OAuthServer-scope",
+			"value": "resourceDataApi"
+		},
+		{
+			"key": "OAuthServer-client_secret",
+			"value": "secret"
+		},
+		{
+			"key": "OAuthServer-client_id",
+			"value": "resourceDataApiClient"
+		},
+		{
+			"key": "OAuthServer-grant_type",
+			"value": "client_credentials"
+		}
+	]
+}
