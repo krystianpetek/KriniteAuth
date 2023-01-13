@@ -4,6 +4,7 @@ using KriniteAuthServer.ResourceDataAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KriniteAuthServer.ResourceDataAPI.Migrations
 {
     [DbContext(typeof(ComplaintDbContext))]
-    partial class ComplaintDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230113045029_updateStatusEntity")]
+    partial class updateStatusEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +39,7 @@ namespace KriniteAuthServer.ResourceDataAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Applicants");
+                    b.ToTable("ApplicantModel");
                 });
 
             modelBuilder.Entity("KriniteAuthServer.ResourceDataAPI.Models.ComplaintModel", b =>

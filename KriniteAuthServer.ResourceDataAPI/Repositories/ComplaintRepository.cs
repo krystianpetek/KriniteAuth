@@ -14,6 +14,6 @@ public class ComplaintRepository : IComplaintRepository
     }
     public async Task<IEnumerable<ComplaintModel>> GetAllAsync()
     {
-        return await _complaintDbContext.Complaints.ToListAsync();
+        return await _complaintDbContext.Complaints.Include(applicant => applicant.Applicant).ToListAsync();
     }
 }

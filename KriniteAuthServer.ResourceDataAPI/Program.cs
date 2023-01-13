@@ -6,19 +6,19 @@ using Microsoft.OpenApi.Models;
 
 namespace KriniteAuthServer.ResourceDataAPI;
 
-public class Program
+public static class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen( swagger =>
+        builder.Services.AddSwaggerGen(swagger =>
         {
             swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "ResourceDataAPI", Version = "v1" });
         });
-        
+
         builder.Services.AddDbContext<ComplaintDbContext>(dbContext =>
         {
             string connectionString = builder.Configuration.GetConnectionString("ComplaintDb");
@@ -43,6 +43,7 @@ public class Program
 
         app.MapControllers();
 
-        app.Run();
+        await app.SeedData();
+        await app.RunAsync();
     }
 }

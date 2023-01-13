@@ -8,9 +8,9 @@ public record ComplaintModel
 
     public string? Description { get; set; }
 
-    public PriorityEnum? Priority { get; set; }
+    public Priority? Priority { get; set; }
 
-    public StatusEnum? State { get; set; }
+    public Status? Status { get; set; }
 
     public DateTime? Created { get; set; }
 

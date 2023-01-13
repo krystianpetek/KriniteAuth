@@ -1,6 +1,6 @@
 ﻿namespace KriniteAuthServer.ResourceDataAPI.Models;
 
-public enum StatusEnum
+public enum Status
 {
     SUBMITTED = 1,
     ACCEPTED = 2,
