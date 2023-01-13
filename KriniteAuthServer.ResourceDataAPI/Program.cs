@@ -4,6 +4,7 @@ using KriniteAuthServer.ResourceDataAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Server.HttpSys;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace KriniteAuthServer.ResourceDataAPI;
@@ -13,6 +14,7 @@ public static class Program
     public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        IdentityModelEventSource.ShowPII = true;
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
@@ -26,16 +28,25 @@ public static class Program
             string connectionString = builder.Configuration.GetConnectionString("ComplaintDb");
             dbContext.UseSqlServer(connectionString);
         });
+
         builder.Services.AddScoped<IComplaintRepository, ComplaintRepository>();
+
         builder.Services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {
+
                 options.Authority = "https://localhost:7822";
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidateAudience = false,
                 };
+
+                if (builder.Environment.IsEnvironment("Docker"))
+                {
+                    options.Authority = builder.Configuration.GetRequiredSection("Authority").Value;
+                    options.RequireHttpsMetadata = false;
+                }
             });
 
         builder.Services.AddAuthorization(options =>
