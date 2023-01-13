@@ -10,237 +10,269 @@
 			"name": "ResourceDataAPI",
 			"item": [
 				{
-					"name": "GET complaints",
-					"event": [
+					"name": "Complaint",
+					"item": [
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
+							"name": "GET complaints",
+							"event": [
 								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
-									"type": "string"
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{ResourceDataAPI}}/api/complaint/",
-							"host": [
-								"{{ResourceDataAPI}}"
 							],
-							"path": [
-								"api",
-								"complaint",
-								""
-							]
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ResourceDataAPI}}/api/complaint/",
+									"host": [
+										"{{ResourceDataAPI}}"
+									],
+									"path": [
+										"api",
+										"complaint",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST complaint",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"{{Title}}\",\r\n    \"description\": \"{{Description}}\",\r\n    \"priority\": {{Priority}},\r\n    \"status\": {{Status}},\r\n    \"applicant\": {\r\n        \"name\": \"{{Name}}\",\r\n        \"surname\": \"{{Surname}}\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ResourceDataAPI}}/api/complaint/",
+									"host": [
+										"{{ResourceDataAPI}}"
+									],
+									"path": [
+										"api",
+										"complaint",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET complaint by ID",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ResourceDataAPI}}/api/complaint/{{ComplaintId}}",
+									"host": [
+										"{{ResourceDataAPI}}"
+									],
+									"path": [
+										"api",
+										"complaint",
+										"{{ComplaintId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT complaint",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":\"{{ComplaintId}}\",\r\n    \"title\": \"{{Title}}\",\r\n    \"description\": \"{{Description}}\",\r\n    \"priority\": {{Priority}},\r\n    \"status\": {{Status}},\r\n    \"applicant\": {\r\n        \"name\": \"{{Name}}\",\r\n        \"surname\": \"{{Surname}}\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ResourceDataAPI}}/api/complaint/{{ComplaintId}}",
+									"host": [
+										"{{ResourceDataAPI}}"
+									],
+									"path": [
+										"api",
+										"complaint",
+										"{{ComplaintId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE complaint",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ResourceDataAPI}}/api/complaint/{{ComplaintId}}",
+									"host": [
+										"{{ResourceDataAPI}}"
+									],
+									"path": [
+										"api",
+										"complaint",
+										"{{ComplaintId}}"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "POST complaint",
-					"event": [
+					"name": "Authentication",
+					"item": [
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
-									"type": "string"
+							"name": "GET claims",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ResourceDataAPI}}/api/authentication",
+									"host": [
+										"{{ResourceDataAPI}}"
+									],
+									"path": [
+										"api",
+										"authentication"
+									]
 								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"{{Title}}\",\r\n    \"description\": \"{{Description}}\",\r\n    \"priority\": {{Priority}},\r\n    \"status\": {{Status}},\r\n    \"applicant\": {\r\n        \"name\": \"{{Name}}\",\r\n        \"surname\": \"{{Surname}}\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{ResourceDataAPI}}/api/complaint/",
-							"host": [
-								"{{ResourceDataAPI}}"
-							],
-							"path": [
-								"api",
-								"complaint",
-								""
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET complaint by ID",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{ResourceDataAPI}}/api/complaint/{{ComplaintId}}",
-							"host": [
-								"{{ResourceDataAPI}}"
-							],
-							"path": [
-								"api",
-								"complaint",
-								"{{ComplaintId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PUT complaint",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\":\"{{ComplaintId}}\",\r\n    \"title\": \"{{Title}}\",\r\n    \"description\": \"{{Description}}\",\r\n    \"priority\": {{Priority}},\r\n    \"status\": {{Status}},\r\n    \"applicant\": {\r\n        \"name\": \"{{Name}}\",\r\n        \"surname\": \"{{Surname}}\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{ResourceDataAPI}}/api/complaint/{{ComplaintId}}",
-							"host": [
-								"{{ResourceDataAPI}}"
-							],
-							"path": [
-								"api",
-								"complaint",
-								"{{ComplaintId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE complaint",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ODNGQzFCRjBCRUIxMUFDMDk1MkMxMjJBRDFFM0FDIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NzM2MjM2NTAsImV4cCI6MTY3MzYyNzI1MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzgyMiIsImNsaWVudF9pZCI6InJlc291cmNlRGF0YUFwaUNsaWVudCIsImp0aSI6IjA1RDEyMzg3OTZEMzVENTUwNzQ3N0E3REU0M0FBM0NBIiwiaWF0IjoxNjczNjIzNjUwLCJzY29wZSI6WyJyZXNvdXJjZURhdGFBcGkiXX0.t4jcFMcUlPQtXdJW-mz3eGGrlZNPEmTm6MxBUEf4qAvyGqYNAmDkdjodSvg4x4tvAcpoKbdkX7NRczuAS1PYo-u0wmnwLdQiYn9V6I54kQLBrGzluODJx7JakwF8taqop7oc9onRjeu58LDTvzdFWQDy_PcHP8WGN0xSix9aCMVC9jtcNJyu4U6md9zBqdyxwPRzPhSTjQyKFJswTlrcJy4-nzYQk8h9S2ntn1qo5zlKSfdOSHkW6KtBTSRywLePws1m6h3KdooJuyr6M4hXoelh222whwY1zVmo5d2FN5rwyFb8ytZcW3htJ5e3X1OQiuB1ePYUoxFoyNOJ76OuVQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{ResourceDataAPI}}/api/complaint/{{ComplaintId}}",
-							"host": [
-								"{{ResourceDataAPI}}"
-							],
-							"path": [
-								"api",
-								"complaint",
-								"{{ComplaintId}}"
-							]
-						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
