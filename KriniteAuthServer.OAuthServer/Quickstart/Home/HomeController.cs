@@ -29,7 +29,7 @@ namespace IdentityServerHost.Quickstart.UI
 
         public IActionResult Index()
         {
-            if (_environment.IsDevelopment())
+            if (_environment.IsDevelopment() || _environment.IsEnvironment("Docker"))
             {
                 // only show in development
                 return View();
@@ -52,7 +52,7 @@ namespace IdentityServerHost.Quickstart.UI
             {
                 vm.Error = message;
 
-                if (!_environment.IsDevelopment())
+                if (_environment.IsDevelopment() || _environment.IsEnvironment("Docker"))
                 {
                     // only show in development
                     message.ErrorDescription = null;
