@@ -47,7 +47,17 @@ public class Program
                     options.Events.OnRedirectToIdentityProvider = (async context =>
                     {
                         context.ProtocolMessage.RedirectUri = string.Join("", redirectUri, "/signin-oidc");
-                        context.ProtocolMessage.IssuerAddress = string.Join("",authority, "/connect/authorize");
+                        context.ProtocolMessage.IssuerAddress = string.Join("", authority, "/connect/authorize");
+                        await Task.CompletedTask;
+                    });
+
+                    options.Events.OnRedirectToIdentityProviderForSignOut = (async context =>
+                    {
+                        string authority = builder.Configuration.GetRequiredSection("Authority").Value;
+                        string redirectUri = builder.Configuration.GetRequiredSection("RedirectUri").Value;
+
+                        context.ProtocolMessage.IssuerAddress = string.Join("", authority, "/connect/endsession");
+                        context.ProtocolMessage.PostLogoutRedirectUri = string.Join("", redirectUri, "/signout-callback-oidc");
                         await Task.CompletedTask;
                     });
                     options.RequireHttpsMetadata = false;

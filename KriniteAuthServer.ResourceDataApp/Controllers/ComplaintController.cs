@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using KriniteAuthServer.ResourceDataClient.ApiServices;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace KriniteAuthServer.ResourceDataClient.Controllers;
 
@@ -18,6 +21,12 @@ public class ComplaintController : Controller
     public async Task<IActionResult> Index()
     {
         return View(await _complaintService.GetAllAsync());
+    }
+
+    public async Task Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
     }
 
     //// GET: ComplaintModels/Details/5
