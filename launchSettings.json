@@ -4,7 +4,7 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "composeLaunchAction": "LaunchBrowser",
-      "composeLaunchServiceName": "kriniteauthserver.oauthserver",
+      "composeLaunchServiceName": "kriniteauthserver.resourcedataapp",
       "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
       "serviceActions": {
         "kriniteauthserver.mssql": "StartWithoutDebugging",

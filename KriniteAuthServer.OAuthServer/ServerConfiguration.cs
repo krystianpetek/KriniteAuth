@@ -28,11 +28,11 @@ public static class ServerConfiguration
             AllowRememberConsent = false,
             RedirectUris = new List<string>
             {
-                "http://localhost:7822/signin-oidc"
+                "https://localhost:7823/signin-oidc"
             },
             PostLogoutRedirectUris = new List<string>
             {
-                "https://localhost:7822/signout-callback-oidc"
+                "https://localhost:7823/signout-callback-oidc"
             },
             ClientSecrets = new List<Secret>
             {
@@ -41,9 +41,8 @@ public static class ServerConfiguration
             AllowedScopes = new List<string>
             {
                 IdentityServerConstants.StandardScopes.OpenId,
-                IdentityServerConstants.StandardScopes.Profile,
+                IdentityServerConstants.StandardScopes.Profile
             }
-
         }
     };
 
@@ -74,8 +73,7 @@ public static class ServerConfiguration
                 new Claim(JwtClaimTypes.GivenName, "Krystian"),
                 new Claim(JwtClaimTypes.FamilyName,"Petek")
             },
-            IsActive= true,
-            ProviderName = "KriniteAuthServer.OAuthServer"
+            IsActive= true
         }
     };
 

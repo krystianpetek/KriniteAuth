@@ -8,6 +8,8 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        builder.Services.AddControllersWithViews();
+
         builder.Services.AddIdentityServer(options =>
             {
                 if (builder.Environment.IsEnvironment("Docker"))
@@ -21,7 +23,6 @@ public class Program
             .AddInMemoryIdentityResources(ServerConfiguration.IdentityResources)
             .AddTestUsers(ServerConfiguration.TestUsers)
             .AddDeveloperSigningCredential();
-        builder.Services.AddControllersWithViews();
 
         var app = builder.Build();
 
@@ -30,7 +31,7 @@ public class Program
         app.UseStaticFiles();
         app.UseAuthorization();
         app.MapDefaultControllerRoute();
-        
+
         app.Run();
     }
 }

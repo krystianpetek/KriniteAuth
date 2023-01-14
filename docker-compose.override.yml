@@ -34,7 +34,9 @@ services:
   kriniteauthserver.resourcedataapp:
     container_name: KriniteAuthServer.ResourceDataApp
     environment:
-      - Issuer=http://kriniteauthserver.oauthserver
+      - InternalAuthority=http://172.30.122.1
+      - Authority=https://localhost:7822
+      - RedirectUri=https://localhost:7823
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80;https://+443
       - Kestrel__Certificates__Default__Path=dev-cert.pfx

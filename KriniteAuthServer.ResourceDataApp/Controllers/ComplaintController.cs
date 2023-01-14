@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using KriniteAuthServer.ResourceDataClient.Models;
 using KriniteAuthServer.ResourceDataClient.ApiServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KriniteAuthServer.ResourceDataClient.Controllers;
 
+[Authorize]
 public class ComplaintController : Controller
 {
     private readonly IComplaintService _complaintService;
