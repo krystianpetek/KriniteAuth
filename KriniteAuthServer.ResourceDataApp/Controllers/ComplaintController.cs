@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using KriniteAuthServer.ResourceDataClient.Models;
 
 namespace KriniteAuthServer.ResourceDataClient.Controllers;
 
@@ -29,23 +30,15 @@ public class ComplaintController : Controller
         await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
     }
 
-    //// GET: ComplaintModels/Details/5
-    //public async Task<IActionResult> Details(Guid? id)
-    //{
-    //    if (id == null || _context.ComplaintModel == null)
-    //    {
-    //        return NotFound();
-    //    }
+    // GET: ComplaintModels/Details/5
+    public async Task<IActionResult> Details(Guid? id)
+    {
+        var complaintModel = await _complaintService.GetByIdAsync(id.Value);
+        if (complaintModel == default)
+            return NotFound();
 
-    //    var complaintModel = await _context.ComplaintModel
-    //        .FirstOrDefaultAsync(m => m.Id == id);
-    //    if (complaintModel == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    return View(complaintModel);
-    //}
+        return View(complaintModel);
+    }
 
     //// GET: ComplaintModels/Create
     //public IActionResult Create()
@@ -70,56 +63,37 @@ public class ComplaintController : Controller
     //    return View(complaintModel);
     //}
 
-    //// GET: ComplaintModels/Edit/5
-    //public async Task<IActionResult> Edit(Guid? id)
-    //{
-    //    if (id == null || _context.ComplaintModel == null)
-    //    {
-    //        return NotFound();
-    //    }
+    // GET: ComplaintModels/Edit/5
+    public async Task<IActionResult> Edit(Guid? id)
+    {
+        if (id == null)
+            return NotFound();
 
-    //    var complaintModel = await _context.ComplaintModel.FindAsync(id);
-    //    if (complaintModel == null)
-    //    {
-    //        return NotFound();
-    //    }
-    //    return View(complaintModel);
-    //}
+        var complaintModel = await _complaintService.GetByIdAsync(id.Value);
+        if (complaintModel == null)
+            return NotFound();
 
-    //// POST: ComplaintModels/Edit/5
-    //// To protect from overposting attacks, enable the specific properties you want to bind to.
-    //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public async Task<IActionResult> Edit(Guid id, [Bind("Id,Title,Description,Priority,Status,Created")] ComplaintModel complaintModel)
-    //{
-    //    if (id != complaintModel.Id)
-    //    {
-    //        return NotFound();
-    //    }
+        return View(complaintModel);
+    }
 
-    //    if (ModelState.IsValid)
-    //    {
-    //        try
-    //        {
-    //            _context.Update(complaintModel);
-    //            await _context.SaveChangesAsync();
-    //        }
-    //        catch (DbUpdateConcurrencyException)
-    //        {
-    //            if (!ComplaintModelExists(complaintModel.Id))
-    //            {
-    //                return NotFound();
-    //            }
-    //            else
-    //            {
-    //                throw;
-    //            }
-    //        }
-    //        return RedirectToAction(nameof(Index));
-    //    }
-    //    return View(complaintModel);
-    //}
+    // POST: ComplaintModels/Edit/5
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(Guid id, [Bind("Id,Title,Description,Priority,Status,Created")] ComplaintModel complaintModel)
+    {
+        if (id != complaintModel.Id)
+        {
+            return NotFound();
+        }
+
+        if (ModelState.IsValid)
+        {
+            await _complaintService.UpdateAsync(complaintModel);
+        }
+        return View(complaintModel);
+    }
 
     //// GET: ComplaintModels/Delete/5
     //public async Task<IActionResult> Delete(Guid? id)

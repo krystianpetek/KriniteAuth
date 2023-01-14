@@ -1,4 +1,7 @@
-﻿using KriniteAuthServer.ResourceDataClient.Models;
+﻿using IdentityModel.Client;
+using KriniteAuthServer.ResourceDataApp;
+using KriniteAuthServer.ResourceDataApp.ApiServices;
+using KriniteAuthServer.ResourceDataClient.Models;
 
 namespace KriniteAuthServer.ResourceDataClient.ApiServices;
 
@@ -6,44 +9,49 @@ public class ComplaintService : IComplaintService
 {
     private readonly HttpClient _httpClient;
 
-    public Task<Guid> AddAsync(ComplaintModel complaintModel)
+    public ComplaintService(HttpClient httpClient)
     {
-        throw new NotImplementedException();
+        _httpClient = httpClient;
     }
 
-    public Task<int> DeleteAsync(Guid id)
+    public async Task<Guid> AddAsync(ComplaintModel complaintModel)
     {
-        throw new NotImplementedException();
+        _ = await TokenHelper.GetToken(_httpClient);
+        var result = await _httpClient.PostAsJsonAsync<ComplaintModel>($"{ComplaintApiEndpoints.Complaints}",complaintModel);
+        var response = await result.Content.ReadFromJsonAsync<Guid>();
+        return response;
+    }
+
+    public async Task<int> DeleteAsync(Guid id)
+    {
+        _ = await TokenHelper.GetToken(_httpClient);
+        var result = await _httpClient.DeleteFromJsonAsync<int>($"{ComplaintApiEndpoints.Complaints}/{id}");
+        return result;
     }
 
     public async Task<IEnumerable<ComplaintModel>> GetAllAsync()
     {
-        return await Task.FromResult(new ComplaintModel[]
-        {
-            new ComplaintModel
-            {
-                Id = Guid.Parse("6da1229a-3e2b-4bcd-1759-08daf5224668"),
-                Title = "Title1",
-                Description= "Description1",
-                Priority = Priority.LOW,
-                Status = Status.SUBMITTED,
-                Created= DateTime.Now,
-                Applicant = new ApplicantModel
-                {
-                    Name = "Name1",
-                    Surname = "Surname1"
-                }
-            },
-        });
+        _ = await TokenHelper.GetToken(_httpClient);
+
+        var result = await _httpClient.GetFromJsonAsync<IEnumerable<ComplaintModel>>(ComplaintApiEndpoints.Complaints);
+        return result ?? Enumerable.Empty<ComplaintModel>();
     }
 
-    public Task<ComplaintModel> GetByIdAsync(Guid id)
+    public async Task<ComplaintModel> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        _ = await TokenHelper.GetToken(_httpClient);
+
+        var result = await _httpClient.GetFromJsonAsync<ComplaintModel>($"{ComplaintApiEndpoints.Complaints}/{id}");
+        return result;
     }
 
-    public Task<int> UpdateAsync(ComplaintModel complaintModel)
+    public async Task<int> UpdateAsync(ComplaintModel complaintModel)
     {
-        throw new NotImplementedException();
+        _ = await TokenHelper.GetToken(_httpClient);
+
+        var result = await _httpClient.PutAsJsonAsync<ComplaintModel>($"{ComplaintApiEndpoints.Complaints}/{complaintModel.Id}", complaintModel);
+        var response = await result.Content.ReadAsStringAsync();
+
+        return await Task.FromResult(1);
     }
 }

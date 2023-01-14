@@ -14,5 +14,5 @@ public record ComplaintModel
 
     public DateTime? Created { get; set; }
 
-    public ApplicantModel Applicant { get; set; }
+    public ApplicantModel? Applicant { get; set; }
 }
