@@ -21,13 +21,16 @@ public class Program
             .AddInMemoryIdentityResources(ServerConfiguration.IdentityResources)
             .AddTestUsers(ServerConfiguration.TestUsers)
             .AddDeveloperSigningCredential();
+        builder.Services.AddControllersWithViews();
 
         var app = builder.Build();
 
         app.UseIdentityServer();
 
-        app.MapGet("/", () => "Hello World!");
-
+        app.UseStaticFiles();
+        app.UseAuthorization();
+        app.MapDefaultControllerRoute();
+        
         app.Run();
     }
 }
