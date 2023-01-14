@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KriniteAuthServer.OAuthServ
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{120A4BB9-6296-4EF8-854D-FAB5E165F67E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KriniteAuthServer.ResourceDataClient", "KriniteAuthServer.ResourceDataClient\KriniteAuthServer.ResourceDataClient.csproj", "{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{120A4BB9-6296-4EF8-854D-FAB5E165F67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{120A4BB9-6296-4EF8-854D-FAB5E165F67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{120A4BB9-6296-4EF8-854D-FAB5E165F67E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
