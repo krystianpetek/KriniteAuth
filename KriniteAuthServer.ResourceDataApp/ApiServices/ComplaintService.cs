@@ -17,7 +17,7 @@ public class ComplaintService : IComplaintService
     public async Task<Guid> AddAsync(ComplaintModel complaintModel)
     {
         HttpClient httpClient = _httpClientFactory.CreateClient("ResourceDataAPI");
-        var result = await httpClient.PostAsJsonAsync<ComplaintModel>($"{ApiEndpoints.Complaints}", complaintModel);
+        var result = await httpClient.PostAsJsonAsync($"{ApiEndpoints.Complaints}", complaintModel);
         var response = await result.Content.ReadFromJsonAsync<Guid>();
         return response;
     }
@@ -53,13 +53,13 @@ public class ComplaintService : IComplaintService
         return result;
     }
 
-    public async Task<int> UpdateAsync(ComplaintModel complaintModel)
+    public async Task UpdateAsync(ComplaintModel complaintModel)
     {
         HttpClient httpClient = _httpClientFactory.CreateClient("ResourceDataAPI");
 
         var result = await httpClient.PutAsJsonAsync<ComplaintModel>($"{ApiEndpoints.Complaints}/{complaintModel.Id}", complaintModel);
         var response = await result.Content.ReadAsStringAsync();
 
-        return await Task.FromResult(1);
+        await Task.CompletedTask;
     }
 }

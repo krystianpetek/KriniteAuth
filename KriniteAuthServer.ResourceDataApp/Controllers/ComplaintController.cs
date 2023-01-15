@@ -40,33 +40,32 @@ public class ComplaintController : Controller
         return View(complaintModel);
     }
 
-    //// GET: ComplaintModels/Create
-    //public IActionResult Create()
-    //{
-    //    return View();
-    //}
+    // GET: ComplaintModels/Create
+    public IActionResult Create()
+    {
+        return View();
+    }
 
-    //// POST: ComplaintModels/Create
-    //// To protect from overposting attacks, enable the specific properties you want to bind to.
-    //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public async Task<IActionResult> Create([Bind("Id,Title,Description,Priority,Status,Created")] ComplaintModel complaintModel)
-    //{
-    //    if (ModelState.IsValid)
-    //    {
-    //        complaintModel.Id = Guid.NewGuid();
-    //        _context.Add(complaintModel);
-    //        await _context.SaveChangesAsync();
-    //        return RedirectToAction(nameof(Index));
-    //    }
-    //    return View(complaintModel);
-    //}
+    // POST: ComplaintModels/Create
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create([Bind("Id,Title,Description,Priority,Status,Created")] ComplaintModel complaintModel)
+    {
+        if (ModelState.IsValid)
+        {
+            complaintModel.Id = Guid.NewGuid();
+            await _complaintService.AddAsync(complaintModel);
+            return RedirectToAction(nameof(Index));
+        }
+        return View(complaintModel);
+    }
 
     // GET: ComplaintModels/Edit/5
     public async Task<IActionResult> Edit(Guid? id)
     {
-        if (id == null)
+        if (id == default)
             return NotFound();
 
         var complaintModel = await _complaintService.GetByIdAsync(id.Value);
@@ -95,45 +94,28 @@ public class ComplaintController : Controller
         return View(complaintModel);
     }
 
-    //// GET: ComplaintModels/Delete/5
-    //public async Task<IActionResult> Delete(Guid? id)
-    //{
-    //    if (id == null || _context.ComplaintModel == null)
-    //    {
-    //        return NotFound();
-    //    }
+    // GET: ComplaintModels/Delete/5
+    public async Task<IActionResult> Delete(Guid? id)
+    {
+        if (id == default)
+            return NotFound();
 
-    //    var complaintModel = await _context.ComplaintModel
-    //        .FirstOrDefaultAsync(m => m.Id == id);
-    //    if (complaintModel == null)
-    //    {
-    //        return NotFound();
-    //    }
+        var complaintModel = await _complaintService.GetByIdAsync(id.Value);
+        if (complaintModel == default)
+            return NotFound();
 
-    //    return View(complaintModel);
-    //}
+        return View(complaintModel);
+    }
 
-    //// POST: ComplaintModels/Delete/5
-    //[HttpPost, ActionName("Delete")]
-    //[ValidateAntiForgeryToken]
-    //public async Task<IActionResult> DeleteConfirmed(Guid id)
-    //{
-    //    if (_context.ComplaintModel == null)
-    //    {
-    //        return Problem("Entity set 'ComplaintContext.ComplaintModel'  is null.");
-    //    }
-    //    var complaintModel = await _context.ComplaintModel.FindAsync(id);
-    //    if (complaintModel != null)
-    //    {
-    //        _context.ComplaintModel.Remove(complaintModel);
-    //    }
+    // POST: ComplaintModels/Delete/5
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(Guid id)
+    {
+        var complaintModel = await _complaintService.GetByIdAsync(id);
+        if (complaintModel != null)
+            await _complaintService.DeleteAsync(id);
 
-    //    await _context.SaveChangesAsync();
-    //    return RedirectToAction(nameof(Index));
-    //}
-
-    //private bool ComplaintModelExists(Guid id)
-    //{
-    //    return (_context.ComplaintModel?.Any(e => e.Id == id)).GetValueOrDefault();
-    //}
+        return RedirectToAction(nameof(Index));
+    }
 }

@@ -28,6 +28,12 @@ public class ComplaintRepository : IComplaintRepository
 
     public async Task<Guid> AddAsync(ComplaintModel complaintModel)
     {
+        complaintModel.Applicant = new ApplicantModel
+        {
+            Id = Guid.NewGuid(),
+            Name = "ExampleName",
+            Surname = "ExampleSurname"
+        };
         var addedEntity = await _complaintDbContext.Complaints
             .AddAsync(complaintModel);
         await _complaintDbContext.SaveChangesAsync();

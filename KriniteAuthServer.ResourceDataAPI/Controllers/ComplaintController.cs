@@ -57,7 +57,7 @@ public class ComplaintController : ControllerBase
         var result = await _complaintRepository.DeleteAsync(id);
         if(result <= 0)
             return NotFound();
-        return Ok();
+        return Ok(result);
     }
 
 }
