@@ -1,8 +1,8 @@
-﻿using KriniteAuthServer.ResourceDataClient.Models;
+﻿using KriniteAuthServer.ResourceDataApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace KriniteAuthServer.ResourceDataClient.Controllers;
+namespace KriniteAuthServer.ResourceDataApp.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

@@ -1,9 +1,8 @@
 ﻿using IdentityModel.Client;
-using KriniteAuthServer.ResourceDataApp.ApiServices;
-using KriniteAuthServer.ResourceDataClient.Models;
+using KriniteAuthServer.ResourceDataApp.Models;
 using System.Text.Json;
 
-namespace KriniteAuthServer.ResourceDataClient.ApiServices;
+namespace KriniteAuthServer.ResourceDataApp.ApiServices;
 
 public class ComplaintService : IComplaintService
 {
@@ -32,7 +31,7 @@ public class ComplaintService : IComplaintService
     public async Task<IEnumerable<ComplaintModel>> GetAllAsync()
     {
         HttpClient httpClient = _httpClientFactory.CreateClient("ResourceDataAPI");
-        
+
         var response = await httpClient.SendAsync(new HttpRequestMessage
         {
             Method = HttpMethod.Get,
@@ -40,7 +39,7 @@ public class ComplaintService : IComplaintService
         }, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
 
-        var result = await response.Content.ReadFromJsonAsync< IEnumerable<ComplaintModel>>();
+        var result = await response.Content.ReadFromJsonAsync<IEnumerable<ComplaintModel>>();
 
         return result ?? Enumerable.Empty<ComplaintModel>();
     }
@@ -57,7 +56,7 @@ public class ComplaintService : IComplaintService
     {
         HttpClient httpClient = _httpClientFactory.CreateClient("ResourceDataAPI");
 
-        var result = await httpClient.PutAsJsonAsync<ComplaintModel>($"{ApiEndpoints.Complaints}/{complaintModel.Id}", complaintModel);
+        var result = await httpClient.PutAsJsonAsync($"{ApiEndpoints.Complaints}/{complaintModel.Id}", complaintModel);
         var response = await result.Content.ReadAsStringAsync();
 
         await Task.CompletedTask;

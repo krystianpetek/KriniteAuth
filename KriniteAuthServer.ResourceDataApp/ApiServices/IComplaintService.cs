@@ -1,6 +1,6 @@
-﻿using KriniteAuthServer.ResourceDataClient.Models;
+﻿using KriniteAuthServer.ResourceDataApp.Models;
 
-namespace KriniteAuthServer.ResourceDataClient.ApiServices;
+namespace KriniteAuthServer.ResourceDataApp.ApiServices;
 
 public interface IComplaintService
 {

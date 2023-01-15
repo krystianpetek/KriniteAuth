@@ -1,4 +1,4 @@
-﻿namespace KriniteAuthServer.ResourceDataClient.Models;
+﻿namespace KriniteAuthServer.ResourceDataApp.Models;
 
 public class ComplaintModel
 {

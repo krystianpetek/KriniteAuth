@@ -1,5 +1,4 @@
-﻿using KriniteAuthServer.ResourceDataClient.ApiServices;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Logging;
 using KriniteAuthServer.ResourceDataApp.Models;
@@ -7,7 +6,7 @@ using KriniteAuthServer.ResourceDataApp.HttpHandlers;
 using Microsoft.Net.Http.Headers;
 using KriniteAuthServer.ResourceDataApp.ApiServices;
 
-namespace KriniteAuthServer.ResourceDataClient;
+namespace KriniteAuthServer.ResourceDataApp;
 
 public class Program
 {
@@ -18,6 +17,7 @@ public class Program
 
         builder.Services.AddControllersWithViews();
         builder.Services.AddScoped<IComplaintService, ComplaintService>();
+        builder.Services.AddSingleton(builder.Configuration.GetRequiredSection("AuthConfig").Get<AuthConfig>());
 
         builder.Services.AddAuthentication(options =>
             {
@@ -47,14 +47,14 @@ public class Program
                     string redirectUri = builder.Configuration.GetRequiredSection("RedirectUri").Value;
 
                     options.Authority = internalAuthority;
-                    options.Events.OnRedirectToIdentityProvider = (async context =>
+                    options.Events.OnRedirectToIdentityProvider = async context =>
                     {
                         context.ProtocolMessage.RedirectUri = string.Join("", redirectUri, "/signin-oidc");
                         context.ProtocolMessage.IssuerAddress = string.Join("", authority, "/connect/authorize");
                         await Task.CompletedTask;
-                    });
+                    };
 
-                    options.Events.OnRedirectToIdentityProviderForSignOut = (async context =>
+                    options.Events.OnRedirectToIdentityProviderForSignOut = async context =>
                     {
                         string authority = builder.Configuration.GetRequiredSection("Authority").Value;
                         string redirectUri = builder.Configuration.GetRequiredSection("RedirectUri").Value;
@@ -62,16 +62,13 @@ public class Program
                         context.ProtocolMessage.IssuerAddress = string.Join("", authority, "/connect/endsession");
                         context.ProtocolMessage.PostLogoutRedirectUri = string.Join("", redirectUri, "/signout-callback-oidc");
                         await Task.CompletedTask;
-                    });
+                    };
                     options.RequireHttpsMetadata = false;
                 }
             });
-        AuthConfig authConfig = builder.Configuration.GetRequiredSection("AuthConfig").Get<AuthConfig>();
-        builder.Services.AddSingleton<AuthConfig>(authConfig);
 
-        builder.Services.AddHttpClient("OAuthServer",async httpClient =>
+        builder.Services.AddHttpClient("OAuthServer", async httpClient =>
         {
-            httpClient.BaseAddress = new Uri(authConfig.RequestUri);
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
         });
@@ -83,8 +80,6 @@ public class Program
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
         }).AddHttpMessageHandler<AuthenticationDelegatingHandler>();
-
-
 
         var app = builder.Build();
 

@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using KriniteAuthServer.ResourceDataClient.ApiServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using KriniteAuthServer.ResourceDataClient.Models;
+using KriniteAuthServer.ResourceDataApp.ApiServices;
+using KriniteAuthServer.ResourceDataApp.Models;
 
-namespace KriniteAuthServer.ResourceDataClient.Controllers;
+namespace KriniteAuthServer.ResourceDataApp.Controllers;
 
 [Authorize]
 public class ComplaintController : Controller
@@ -83,14 +83,10 @@ public class ComplaintController : Controller
     public async Task<IActionResult> Edit(Guid id, [Bind("Id,Title,Description,Priority,Status,Created")] ComplaintModel complaintModel)
     {
         if (id != complaintModel.Id)
-        {
             return NotFound();
-        }
 
         if (ModelState.IsValid)
-        {
             await _complaintService.UpdateAsync(complaintModel);
-        }
         return View(complaintModel);
     }
 
