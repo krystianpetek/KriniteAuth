@@ -53,7 +53,7 @@ public static class Program
         {
             options.AddPolicy("ComplaintPolicy", policy =>
             {
-                policy.RequireClaim("client_id", "resourceDataApiClient");
+                policy.RequireClaim("client_id", "resourceDataApiClient", "resourceDataAppClientHybrid");
             });
         });
 
