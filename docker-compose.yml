@@ -34,6 +34,15 @@ services:
       static-network:
         ipv4_address: 172.30.123.1
 
+  kriniteauthserver.resourcedataapphybrid:
+    image: ${DOCKER_REGISTRY-}kriniteauthserverresourcedataapphybrid
+    build:
+      context: .
+      dockerfile: KriniteAuthServer.ResourceDataAppHybrid/Dockerfile
+    networks:
+      static-network:
+        ipv4_address: 172.30.124.1
+
 networks:
   static-network:
     ipam:
