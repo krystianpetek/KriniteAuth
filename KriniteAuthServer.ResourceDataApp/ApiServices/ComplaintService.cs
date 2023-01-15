@@ -1,55 +1,63 @@
 ﻿using IdentityModel.Client;
-using KriniteAuthServer.ResourceDataApp;
 using KriniteAuthServer.ResourceDataApp.ApiServices;
 using KriniteAuthServer.ResourceDataClient.Models;
+using System.Text.Json;
 
 namespace KriniteAuthServer.ResourceDataClient.ApiServices;
 
 public class ComplaintService : IComplaintService
 {
-    private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public ComplaintService(HttpClient httpClient)
+    public ComplaintService(IHttpClientFactory httpClientFactory)
     {
-        _httpClient = httpClient;
+        _httpClientFactory = httpClientFactory;
     }
 
     public async Task<Guid> AddAsync(ComplaintModel complaintModel)
     {
-        _ = await TokenHelper.GetToken(_httpClient);
-        var result = await _httpClient.PostAsJsonAsync<ComplaintModel>($"{ComplaintApiEndpoints.Complaints}",complaintModel);
+        HttpClient httpClient = _httpClientFactory.CreateClient("ResourceDataAPI");
+        var result = await httpClient.PostAsJsonAsync<ComplaintModel>($"{ApiEndpoints.Complaints}", complaintModel);
         var response = await result.Content.ReadFromJsonAsync<Guid>();
         return response;
     }
 
     public async Task<int> DeleteAsync(Guid id)
     {
-        _ = await TokenHelper.GetToken(_httpClient);
-        var result = await _httpClient.DeleteFromJsonAsync<int>($"{ComplaintApiEndpoints.Complaints}/{id}");
+        HttpClient httpClient = _httpClientFactory.CreateClient("ResourceDataAPI");
+        var result = await httpClient.DeleteFromJsonAsync<int>($"{ApiEndpoints.Complaints}/{id}");
         return result;
     }
 
     public async Task<IEnumerable<ComplaintModel>> GetAllAsync()
     {
-        _ = await TokenHelper.GetToken(_httpClient);
+        HttpClient httpClient = _httpClientFactory.CreateClient("ResourceDataAPI");
+        
+        var response = await httpClient.SendAsync(new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri($"{ApiEndpoints.Complaints}")
+        }, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+        response.EnsureSuccessStatusCode();
 
-        var result = await _httpClient.GetFromJsonAsync<IEnumerable<ComplaintModel>>(ComplaintApiEndpoints.Complaints);
+        var result = await response.Content.ReadFromJsonAsync< IEnumerable<ComplaintModel>>();
+
         return result ?? Enumerable.Empty<ComplaintModel>();
     }
 
     public async Task<ComplaintModel> GetByIdAsync(Guid id)
     {
-        _ = await TokenHelper.GetToken(_httpClient);
+        HttpClient httpClient = _httpClientFactory.CreateClient("ResourceDataAPI");
 
-        var result = await _httpClient.GetFromJsonAsync<ComplaintModel>($"{ComplaintApiEndpoints.Complaints}/{id}");
+        var result = await httpClient.GetFromJsonAsync<ComplaintModel>($"{ApiEndpoints.Complaints}/{id}");
         return result;
     }
 
     public async Task<int> UpdateAsync(ComplaintModel complaintModel)
     {
-        _ = await TokenHelper.GetToken(_httpClient);
+        HttpClient httpClient = _httpClientFactory.CreateClient("ResourceDataAPI");
 
-        var result = await _httpClient.PutAsJsonAsync<ComplaintModel>($"{ComplaintApiEndpoints.Complaints}/{complaintModel.Id}", complaintModel);
+        var result = await httpClient.PutAsJsonAsync<ComplaintModel>($"{ApiEndpoints.Complaints}/{complaintModel.Id}", complaintModel);
         var response = await result.Content.ReadAsStringAsync();
 
         return await Task.FromResult(1);

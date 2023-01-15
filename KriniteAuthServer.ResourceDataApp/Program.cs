@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Logging;
+using KriniteAuthServer.ResourceDataApp.Models;
+using KriniteAuthServer.ResourceDataApp.HttpHandlers;
+using Microsoft.Net.Http.Headers;
+using KriniteAuthServer.ResourceDataApp.ApiServices;
 
 namespace KriniteAuthServer.ResourceDataClient;
 
@@ -12,7 +16,6 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         IdentityModelEventSource.ShowPII = true;
 
-        // Add services to the container.
         builder.Services.AddControllersWithViews();
         builder.Services.AddScoped<IComplaintService, ComplaintService>();
 
@@ -63,8 +66,25 @@ public class Program
                     options.RequireHttpsMetadata = false;
                 }
             });
+        AuthConfig authConfig = builder.Configuration.GetRequiredSection("AuthConfig").Get<AuthConfig>();
+        builder.Services.AddSingleton<AuthConfig>(authConfig);
 
-        builder.Services.AddHttpClient<ComplaintService>();
+        builder.Services.AddHttpClient("OAuthServer",async httpClient =>
+        {
+            httpClient.BaseAddress = new Uri(authConfig.RequestUri);
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+        });
+
+        builder.Services.AddTransient<AuthenticationDelegatingHandler>();
+        builder.Services.AddHttpClient("ResourceDataAPI", httpClient =>
+        {
+            httpClient.BaseAddress = new Uri(ApiEndpoints.Complaints);
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+        }).AddHttpMessageHandler<AuthenticationDelegatingHandler>();
+
+
 
         var app = builder.Build();
 
