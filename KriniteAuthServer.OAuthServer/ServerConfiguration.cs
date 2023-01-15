@@ -70,7 +70,8 @@ public static class ServerConfiguration
                 IdentityServerConstants.StandardScopes.Profile,
                 IdentityServerConstants.StandardScopes.Email,
                 IdentityServerConstants.StandardScopes.Address,
-                "resourceDataApi"
+                "resourceDataApi",
+                "roles"
             }
         }
     };
@@ -89,7 +90,8 @@ public static class ServerConfiguration
         new IdentityResources.OpenId(),
         new IdentityResources.Profile(),
         new IdentityResources.Email(),
-        new IdentityResources.Address()
+        new IdentityResources.Address(),
+        new IdentityResource("roles", "Your roles" ,new List<string>(){ "role" })
     };
 
     internal static List<TestUser> TestUsers = new List<TestUser>()
@@ -106,10 +108,28 @@ public static class ServerConfiguration
                 new Claim(JwtClaimTypes.FamilyName,"Petek"),
                 new Claim(JwtClaimTypes.Email,"krystianpetek2@gmail.com", ClaimValueTypes.Email),
                 new Claim(JwtClaimTypes.EmailVerified,"true",ClaimValueTypes.Boolean),
-                new Claim(JwtClaimTypes.Address,"Wadowice")
+                new Claim(JwtClaimTypes.Address,"Wadowice"),
+                new Claim(JwtClaimTypes.Role, "admin")
+            },
+            IsActive= true
+        },        new TestUser
+        {
+            SubjectId = "9c5880bd-a588-4634-9586-8dda315e7776",
+            Username = "localuser",
+            Password = "DoNotTellAny0ne",
+            Claims = new List<Claim>
+            {
+                new Claim(JwtClaimTypes.Name, "Local User"),
+                new Claim(JwtClaimTypes.GivenName, "local"),
+                new Claim(JwtClaimTypes.FamilyName,"user"),
+                new Claim(JwtClaimTypes.Email,"localuser@wp.com", ClaimValueTypes.Email),
+                new Claim(JwtClaimTypes.EmailVerified,"false",ClaimValueTypes.Boolean),
+                new Claim(JwtClaimTypes.Address,"Computer"),
+                new Claim(JwtClaimTypes.Role, "user")
             },
             IsActive= true
         }
+
     };
 
 }

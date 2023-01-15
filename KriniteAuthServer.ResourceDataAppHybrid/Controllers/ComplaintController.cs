@@ -24,12 +24,6 @@ public class ComplaintController : Controller
         return View(await _complaintService.GetAllAsync());
     }
 
-    public async Task Logout()
-    {
-        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
-    }
-
     // GET: ComplaintModels/Details/5
     public async Task<IActionResult> Details(Guid? id)
     {
@@ -113,5 +107,18 @@ public class ComplaintController : Controller
             await _complaintService.DeleteAsync(id);
 
         return RedirectToAction(nameof(Index));
+    }
+
+    public async Task Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
+    }
+
+    [Authorize(Roles = "admin")]
+    public async Task<IActionResult> AdminOnly()
+    {
+        var userInfo = await _complaintService.GetUserInformation();
+        return View("AdminOnly",userInfo);
     }
 }

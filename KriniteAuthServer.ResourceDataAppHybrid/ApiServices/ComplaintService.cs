@@ -1,5 +1,9 @@
 ﻿using IdentityModel.Client;
 using KriniteAuthServer.ResourceDataAppHybrid.Models;
+using KriniteAuthServer.ResourceDataAppHybrid.Models.ViewModels;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Security.Claims;
 using System.Text.Json;
 
 namespace KriniteAuthServer.ResourceDataAppHybrid.ApiServices;
@@ -7,10 +11,12 @@ namespace KriniteAuthServer.ResourceDataAppHybrid.ApiServices;
 public class ComplaintService : IComplaintService
 {
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public ComplaintService(IHttpClientFactory httpClientFactory)
+    public ComplaintService(IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor)
     {
-        _httpClientFactory = httpClientFactory;
+        _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
+        _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
     }
 
     public async Task<Guid> AddAsync(ComplaintModel complaintModel)
@@ -60,5 +66,32 @@ public class ComplaintService : IComplaintService
         var response = await result.Content.ReadAsStringAsync();
 
         await Task.CompletedTask;
+    }
+
+    public async Task<UserInfoViewModel> GetUserInformation()
+    {
+        var httpClient = _httpClientFactory.CreateClient("OAuthServer");
+
+        var dataResponse = await httpClient.GetDiscoveryDocumentAsync();
+        if (dataResponse.IsError)
+            throw new HttpRequestException("Error while requesting access token.");
+
+        var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+
+        var userInfoResponse = await httpClient.GetUserInfoAsync(new UserInfoRequest
+        {
+            Address = dataResponse.UserInfoEndpoint,
+            Token = accessToken
+        });
+        if(userInfoResponse.IsError)
+            throw new HttpRequestException("Error while getting user info.");
+
+        var userInfoClaims = new List<KeyValuePair<string, string>>();
+        foreach(Claim claim in userInfoResponse.Claims )
+        {
+            userInfoClaims.Add(new KeyValuePair<string,string>(claim.Type, claim.Value));
+        }
+
+        return new UserInfoViewModel(userInfoClaims);
     }
 }

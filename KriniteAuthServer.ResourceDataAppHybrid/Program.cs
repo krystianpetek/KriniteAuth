@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.Net.Http.Headers;
-using KriniteAuthServer.ResourceDataAppHybrid.Models;
 using KriniteAuthServer.ResourceDataAppHybrid.ApiServices;
 using KriniteAuthServer.ResourceDataAppHybrid.HttpHandlers;
+using IdentityModel;
+using Microsoft.AspNetCore.Authentication;
+using KriniteAuthServer.ResourceDataAppHybrid.Models.Authorization;
 
 namespace KriniteAuthServer.ResourceDataAppHybrid;
 
@@ -17,7 +19,8 @@ public class Program
 
         builder.Services.AddControllersWithViews();
         builder.Services.AddScoped<IComplaintService, ComplaintService>();
-        builder.Services.AddSingleton(builder.Configuration.GetRequiredSection("AuthConfig").Get<AuthConfig>());
+        var authConfig = builder.Configuration.GetRequiredSection("AuthConfig").Get<AuthConfig>();
+        builder.Services.AddSingleton<AuthConfig>(authConfig);
 
         builder.Services.AddAuthentication(options =>
             {
@@ -35,13 +38,20 @@ public class Program
 
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
-                options.Scope.Add("resourceDataApi");
+                options.Scope.Add("roles");
                 options.Scope.Add("email");
                 options.Scope.Add("address");
+                options.ClaimActions.MapUniqueJsonKey("role", "role");
+                options.Scope.Add("resourceDataApi");
 
                 options.SaveTokens = true;
-
                 options.GetClaimsFromUserInfoEndpoint = true;
+
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    NameClaimType = JwtClaimTypes.GivenName,
+                    RoleClaimType = JwtClaimTypes.Role,
+                };
 
                 if (builder.Environment.IsEnvironment("Docker"))
                 {
@@ -72,6 +82,7 @@ public class Program
 
         builder.Services.AddHttpClient("OAuthServer", async httpClient =>
         {
+            httpClient.BaseAddress = new Uri(authConfig.RequestUri);
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
         });

@@ -1,7 +1,7 @@
-﻿using KriniteAuthServer.ResourceDataAppHybrid.Models;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using IdentityModel.Client;
+using KriniteAuthServer.ResourceDataAppHybrid.Models.Authorization;
 
 namespace KriniteAuthServer.ResourceDataAppHybrid.HttpHandlers;
 

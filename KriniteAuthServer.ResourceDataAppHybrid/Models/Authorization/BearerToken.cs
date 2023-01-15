@@ -1,4 +1,4 @@
-﻿namespace KriniteAuthServer.ResourceDataAppHybrid.Models;
+﻿namespace KriniteAuthServer.ResourceDataAppHybrid.Models.Authorization;
 
 public class BearerToken
 {

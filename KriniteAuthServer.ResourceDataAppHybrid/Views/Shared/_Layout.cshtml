@@ -29,7 +29,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Complaint" asp-action="Index">Complaints</a>
                         </li>
-
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-secondary" asp-area="" asp-controller="Complaint" asp-action="AdminOnly">Admin Only</a>
+                            </li>
+                        }
                     </ul>
                     <ul class ="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
