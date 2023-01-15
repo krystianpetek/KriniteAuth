@@ -68,6 +68,8 @@ public static class ServerConfiguration
             {
                 IdentityServerConstants.StandardScopes.OpenId,
                 IdentityServerConstants.StandardScopes.Profile,
+                IdentityServerConstants.StandardScopes.Email,
+                IdentityServerConstants.StandardScopes.Address,
                 "resourceDataApi"
             }
         }
@@ -85,7 +87,9 @@ public static class ServerConfiguration
     internal static List<IdentityResource> IdentityResources = new List<IdentityResource>()
     {
         new IdentityResources.OpenId(),
-        new IdentityResources.Profile()
+        new IdentityResources.Profile(),
+        new IdentityResources.Email(),
+        new IdentityResources.Address()
     };
 
     internal static List<TestUser> TestUsers = new List<TestUser>()
@@ -97,8 +101,12 @@ public static class ServerConfiguration
             Password = "DoNotTellAny0ne",
             Claims = new List<Claim>
             {
+                new Claim(JwtClaimTypes.Name, "Krystian Petek"),
                 new Claim(JwtClaimTypes.GivenName, "Krystian"),
-                new Claim(JwtClaimTypes.FamilyName,"Petek")
+                new Claim(JwtClaimTypes.FamilyName,"Petek"),
+                new Claim(JwtClaimTypes.Email,"krystianpetek2@gmail.com", ClaimValueTypes.Email),
+                new Claim(JwtClaimTypes.EmailVerified,"true",ClaimValueTypes.Boolean),
+                new Claim(JwtClaimTypes.Address,"Wadowice")
             },
             IsActive= true
         }
