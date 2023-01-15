@@ -25,6 +25,7 @@ public static class ServerConfiguration
             ClientId = "resourceDataAppClient",
             ClientName = "ResourceDataApp",
             AllowedGrantTypes = { GrantType.AuthorizationCode },
+            RequirePkce= true,
             AllowRememberConsent = false,
             RedirectUris = new List<string>
             {
@@ -42,6 +43,32 @@ public static class ServerConfiguration
             {
                 IdentityServerConstants.StandardScopes.OpenId,
                 IdentityServerConstants.StandardScopes.Profile
+            }
+        },
+        new Client
+        {
+            ClientId = "resourceDataAppClientHybrid",
+            ClientName = "ResourceDataAppHybrid",
+            AllowedGrantTypes = { GrantType.Hybrid },
+            RequirePkce= false,
+            AllowRememberConsent = false,
+            RedirectUris = new List<string>
+            {
+                "https://localhost:7824/signin-oidc"
+            },
+            PostLogoutRedirectUris = new List<string>
+            {
+                "https://localhost:7824/signout-callback-oidc"
+            },
+            ClientSecrets = new List<Secret>
+            {
+                new Secret("secret".Sha256())
+            },
+            AllowedScopes = new List<string>
+            {
+                IdentityServerConstants.StandardScopes.OpenId,
+                IdentityServerConstants.StandardScopes.Profile,
+                "resourceDataApi"
             }
         }
     };
