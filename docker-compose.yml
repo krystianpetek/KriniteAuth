@@ -43,6 +43,15 @@ services:
       static-network:
         ipv4_address: 172.30.124.1
 
+  kriniteauthserver.gatewayapi:
+    image: ${DOCKER_REGISTRY-}kriniteauthservergatewayapi
+    build:
+      context: .
+      dockerfile: KriniteAuthServer.GatewayAPI/Dockerfile
+    networks:
+      static-network:
+        ipv4_address: 172.30.125.1
+
 networks:
   static-network:
     ipam:
