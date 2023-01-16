@@ -7,12 +7,14 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\KriniteAuthServer</DockerfileContext>
     <UserSecretsId>42d8fa48-8872-45cc-9ba8-eb6b411d553f</UserSecretsId>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Ocelot" Version="18.0.0" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties ocelot_1development_1json__JsonSchema="https://json.schemastore.org/ocelot.json" /></VisualStudio></ProjectExtensions>
 
 </Project>

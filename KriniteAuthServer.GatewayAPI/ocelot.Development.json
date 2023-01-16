@@ -1,0 +1,44 @@
+{
+  "Routes": [
+    // KriniteAuthServer.ResourceDataApi
+    {
+      "DownstreamPathTemplate": "/api/complaint/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7820
+        }
+      ],
+      "UpstreamPathTemplate": "/complaint",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/complaint/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7820
+        }
+      ],
+      "UpstreamPathTemplate": "/complaint/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/authentication",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7820
+        }
+      ],
+      "UpstreamPathTemplate": "/authentication",
+      "UpstreamHttpMethod": [ "GET"]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7825"
+  }
+}
