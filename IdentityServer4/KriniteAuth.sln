@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KriniteAuth.ResourceDataAPI", "Clients\KriniteAuth.ResourceDataAPI\KriniteAuth.ResourceDataAPI.csproj", "{9FDD6849-5B87-4F43-8DA6-F563B496F943}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KriniteAuth.Server", "Server\KriniteAuth.Server\KriniteAuth.Server.csproj", "{43A6E59E-4738-4034-99BB-08129C3E0D29}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "KriniteAuth.Docker", "KriniteAuth.Docker\KriniteAuth.Docker.dcproj", "{120A4BB9-6296-4EF8-854D-FAB5E165F67E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KriniteAuth.ResourceDataApp", "Clients\KriniteAuth.ResourceDataApp\KriniteAuth.ResourceDataApp.csproj", "{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KriniteAuth.ResourceDataAppHybrid", "Clients\KriniteAuth.ResourceDataAppHybrid\KriniteAuth.ResourceDataAppHybrid.csproj", "{E29CEEAE-3375-4F46-B46E-9E7D09099B38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KriniteAuth.Gateway", "KriniteAuth.Gateway\KriniteAuth.Gateway.csproj", "{3994F184-241F-4268-BFE7-36AC8DCCC3FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer4", "IdentityServer4", "{0821077D-9AB5-40ED-B89D-5C0974029895}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenIddict", "OpenIddict", "{2350A02F-FCD3-4165-B8C7-3AAF946DB0DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{B7816E84-E49F-4837-9C50-F785BD5F27EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{783F9C08-39A2-4217-BA3E-FC20AEEB5077}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{08349B81-F7AD-44F3-A99D-E4E79A1887DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{1FBD75D1-AFD8-47BE-865E-2C9BFC5E16D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FDD6849-5B87-4F43-8DA6-F563B496F943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FDD6849-5B87-4F43-8DA6-F563B496F943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FDD6849-5B87-4F43-8DA6-F563B496F943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDD6849-5B87-4F43-8DA6-F563B496F943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43A6E59E-4738-4034-99BB-08129C3E0D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A6E59E-4738-4034-99BB-08129C3E0D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A6E59E-4738-4034-99BB-08129C3E0D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A6E59E-4738-4034-99BB-08129C3E0D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{120A4BB9-6296-4EF8-854D-FAB5E165F67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{120A4BB9-6296-4EF8-854D-FAB5E165F67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{120A4BB9-6296-4EF8-854D-FAB5E165F67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{120A4BB9-6296-4EF8-854D-FAB5E165F67E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E29CEEAE-3375-4F46-B46E-9E7D09099B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E29CEEAE-3375-4F46-B46E-9E7D09099B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E29CEEAE-3375-4F46-B46E-9E7D09099B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E29CEEAE-3375-4F46-B46E-9E7D09099B38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3994F184-241F-4268-BFE7-36AC8DCCC3FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3994F184-241F-4268-BFE7-36AC8DCCC3FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3994F184-241F-4268-BFE7-36AC8DCCC3FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3994F184-241F-4268-BFE7-36AC8DCCC3FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9FDD6849-5B87-4F43-8DA6-F563B496F943} = {783F9C08-39A2-4217-BA3E-FC20AEEB5077}
+		{43A6E59E-4738-4034-99BB-08129C3E0D29} = {B7816E84-E49F-4837-9C50-F785BD5F27EB}
+		{120A4BB9-6296-4EF8-854D-FAB5E165F67E} = {0821077D-9AB5-40ED-B89D-5C0974029895}
+		{F562ACBA-A17A-44C9-A9D7-1BBC5DE901EE} = {783F9C08-39A2-4217-BA3E-FC20AEEB5077}
+		{E29CEEAE-3375-4F46-B46E-9E7D09099B38} = {783F9C08-39A2-4217-BA3E-FC20AEEB5077}
+		{3994F184-241F-4268-BFE7-36AC8DCCC3FA} = {0821077D-9AB5-40ED-B89D-5C0974029895}
+		{B7816E84-E49F-4837-9C50-F785BD5F27EB} = {0821077D-9AB5-40ED-B89D-5C0974029895}
+		{783F9C08-39A2-4217-BA3E-FC20AEEB5077} = {0821077D-9AB5-40ED-B89D-5C0974029895}
+		{08349B81-F7AD-44F3-A99D-E4E79A1887DE} = {2350A02F-FCD3-4165-B8C7-3AAF946DB0DF}
+		{1FBD75D1-AFD8-47BE-865E-2C9BFC5E16D5} = {2350A02F-FCD3-4165-B8C7-3AAF946DB0DF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18517657-7C3D-4DC6-8F09-3D437FD3D6D9}
+	EndGlobalSection
+EndGlobal
